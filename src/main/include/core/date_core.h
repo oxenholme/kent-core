@@ -37,6 +37,16 @@ namespace core {
 
         explicit constexpr operator unsigned() const;
 
+        friend constexpr bool operator==(date, date);
+        friend constexpr bool operator!=(date, date);
+        friend constexpr bool operator<(date, date);
+        friend constexpr bool operator>(date, date);
+        friend constexpr bool operator<=(date, date);
+        friend constexpr bool operator>=(date, date);
+
+        friend constexpr date operator+(date, int);
+        friend constexpr date operator-(date, int);
+
     private:
         uint_least32_t _julian;
     };
@@ -98,6 +108,33 @@ namespace core {
     constexpr date::operator unsigned() const {
         return _julian;
     }
+
+    constexpr bool operator==(date lhs, date rhs) {
+        return lhs._julian == rhs._julian;
+    }
+    constexpr bool operator!=(date lhs, date rhs) {
+        return lhs._julian != rhs._julian;
+    }
+    constexpr bool operator<(date lhs, date rhs) {
+        return lhs._julian < rhs._julian;
+    }
+    constexpr bool operator>(date lhs, date rhs) {
+        return lhs._julian > rhs._julian;
+    }
+    constexpr bool operator<=(date lhs, date rhs) {
+        return lhs._julian <= rhs._julian;
+    }
+    constexpr bool operator>=(date lhs, date rhs) {
+        return lhs._julian >= rhs._julian;
+    }
+
+    constexpr date operator+(date lhs, int rhs) {
+        return date{lhs._julian + rhs};
+    }
+    constexpr date operator-(date lhs, int rhs) {
+        return date{lhs._julian - rhs};
+    }
+
 
 }
 

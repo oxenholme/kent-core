@@ -9,14 +9,28 @@ public:
 
 protected:
     void operator()() {
-        core::date any_day{2457496};
+        core::date sunday{2457496};
+        core::date monday{2457497};
 
-        if (static_cast<unsigned>(any_day) != 2457496) {
+        if (static_cast<unsigned>(sunday) != 2457496) {
+            throw ::test::test_failure("Julian day mis-match");
+        }
+        if (static_cast<unsigned>(monday) != 2457497) {
             throw ::test::test_failure("Julian day mis-match");
         }
 
-        if (any_day.weekday() != core::sunday) {
+        if (sunday.weekday() != core::sunday) {
             throw ::test::test_failure("Weekday mis-match");
+        }
+        if (monday.weekday() != core::monday) {
+            throw ::test::test_failure("Weekday mis-match");
+        }
+
+        if (sunday + 1 != monday) {
+            throw ::test::test_failure("Add compare mis-match");
+        }
+        if (sunday != monday - 1) {
+            throw ::test::test_failure("Subtract compare mis-match");
         }
     }
 };
