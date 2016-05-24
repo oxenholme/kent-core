@@ -1,5 +1,5 @@
-#ifndef _CORE_TXDATA_H_
-#define _CORE_TXDATA_H_
+#ifndef _CORE_TZFILE_H_
+#define _CORE_TZFILE_H_
 
 #include <cstdint>
 #include <ctime>
