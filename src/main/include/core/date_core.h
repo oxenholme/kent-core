@@ -2,6 +2,7 @@
 #define _CORE_DATE_CORE_H_
 
 #include <cstdint>
+#include <ctime>
 
 namespace core {
 
@@ -33,9 +34,17 @@ namespace core {
     public:
         explicit constexpr date(unsigned);
 
+        static constexpr date from_time_t(time_t);
+
         constexpr core::weekday weekday() const;
 
         explicit constexpr operator unsigned() const;
+
+        static constexpr uint_least32_t secs_per_day = 24 * 60 * 60;
+
+#if defined __unix__ || defined _WIN32 
+        static constexpr uint_least32_t epoch = 2440588;
+#endif
 
         friend constexpr bool operator==(date, date);
         friend constexpr bool operator!=(date, date);
@@ -99,6 +108,10 @@ namespace core {
     // Date implementation
 
     constexpr date::date(unsigned julian) : _julian(julian) {
+    }
+
+    constexpr date date::from_time_t(time_t time) {
+        return date{static_cast<uint_least32_t>(time / secs_per_day + epoch)};
     }
 
     constexpr core::weekday date::weekday() const {

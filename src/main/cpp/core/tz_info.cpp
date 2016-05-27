@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include "core/tzfile.h"
+#include "core/tz_info.h"
 
-void core::tzfile::check_magic(std::istream& in)
+void core::tz_info::check_magic(std::istream& in)
 {
     uint32_t magic;
     in.read(reinterpret_cast<char*>(&magic), sizeof(magic));
@@ -12,7 +12,7 @@ void core::tzfile::check_magic(std::istream& in)
     }
 }
 
-unsigned core::tzfile::check_version(std::istream& in, unsigned min)
+unsigned core::tz_info::check_version(std::istream& in, unsigned min)
 {
     unsigned ver;
     uint8_t ver_buff[16];
@@ -41,7 +41,7 @@ unsigned core::tzfile::check_version(std::istream& in, unsigned min)
     return ver;
 }
 
-std::unique_ptr<int32_t[]> core::tzfile::read_times(std::istream& in, unsigned count)
+std::unique_ptr<int32_t[]> core::tz_info::read_times(std::istream& in, unsigned count)
 {
     auto times = std::make_unique<int32_t[]>(count);
     in.read(reinterpret_cast<char*>(times.get()), sizeof(int32_t) * count);
@@ -53,7 +53,7 @@ std::unique_ptr<int32_t[]> core::tzfile::read_times(std::istream& in, unsigned c
     return times;
 }
 
-std::unique_ptr<uint8_t[]> core::tzfile::read_bytes(std::istream& in, unsigned count)
+std::unique_ptr<uint8_t[]> core::tz_info::read_bytes(std::istream& in, unsigned count)
 {
     auto bytes = std::make_unique<uint8_t[]>(count);
     in.read(reinterpret_cast<char*>(bytes.get()), sizeof(uint8_t) * count);
@@ -63,7 +63,7 @@ std::unique_ptr<uint8_t[]> core::tzfile::read_bytes(std::istream& in, unsigned c
     return bytes;
 }
 
-auto core::tzfile::read_types(std::istream& in, unsigned count) -> std::unique_ptr<tztype[]>
+auto core::tz_info::read_types(std::istream& in, unsigned count) -> std::unique_ptr<tztype[]>
 {
     auto types = std::make_unique<tztype[]>(count);
     for (unsigned i = 0; i < count; ++i) {
@@ -76,7 +76,7 @@ auto core::tzfile::read_types(std::istream& in, unsigned count) -> std::unique_p
     return types;
 }
 
-core::tzfile::tzfile(std::istream& in)
+core::tz_info::tz_info(std::istream& in)
 {
     check_magic(in);
 
@@ -176,7 +176,7 @@ core::tzfile::tzfile(std::istream& in)
     }
 }
 
-core::tzfile::info core::tzfile::get_info(time_t gmt) const
+core::tz_info::info core::tz_info::get_info(time_t gmt) const
 {
     int i = index;
     if (infos[i].start > gmt) {
@@ -188,7 +188,7 @@ core::tzfile::info core::tzfile::get_info(time_t gmt) const
     return infos[i];
 }
 
-std::time_t core::tzfile::get_offset(time_t gmt) const
+std::time_t core::tz_info::get_offset(time_t gmt) const
 {
     return get_info(gmt).offset;
 }

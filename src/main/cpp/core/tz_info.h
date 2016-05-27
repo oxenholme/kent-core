@@ -1,5 +1,5 @@
-#ifndef _CORE_TZFILE_H_
-#define _CORE_TZFILE_H_
+#ifndef _CORE_TZ_INFO_H_
+#define _CORE_TZ_INFO_H_
 
 #include <cstdint>
 #include <ctime>
@@ -15,7 +15,7 @@
 
 namespace core {
 
-    class tzfile {
+    class tz_info {
     public:
         struct info {
             time_t start;
@@ -25,7 +25,7 @@ namespace core {
             std::string code;
         };
 
-        tzfile(std::istream& in);
+        tz_info(std::istream& in);
 
         info get_info(time_t gmt) const;
         time_t get_offset(time_t gmt) const;
