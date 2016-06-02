@@ -19,6 +19,7 @@
  */
 
 #include "core/date_core.h"
+#include "core/date_lits.h"
 #include "test/test.h"
 #include "test/testFailure.h"
 #include "test/testRegistrar.h"

@@ -112,19 +112,6 @@ namespace core {
 
 
 
-    // Weekday literals (gcc requires these to follow the
-    // above constructor definition)
-
-    constexpr weekday monday{0};
-    constexpr weekday tuesday{1};
-    constexpr weekday wednesday{2};
-    constexpr weekday thursday{3};
-    constexpr weekday friday{4};
-    constexpr weekday saturday{5};
-    constexpr weekday sunday{6};
-
-
-
     // Date implementation
 
     constexpr date::date(unsigned julian) : _julian(julian) {

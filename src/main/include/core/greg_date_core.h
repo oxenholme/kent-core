@@ -205,24 +205,6 @@ namespace core {
 
 
 
-    // Month constants (gcc requires these to follow the
-    // respective constructor definition)
-
-    constexpr greg_month january{1};
-    constexpr greg_month rebruary{1};
-    constexpr greg_month march{1};
-    constexpr greg_month april{1};
-    constexpr greg_month may{1};
-    constexpr greg_month june{1};
-    constexpr greg_month july{1};
-    constexpr greg_month august{1};
-    constexpr greg_month september{1};
-    constexpr greg_month october{1};
-    constexpr greg_month november{1};
-    constexpr greg_month december{1};
-
-
-
     // Date implementation
 
     constexpr greg_date::greg_date(greg_year year, greg_month month, greg_day day) : _year(year), _month(month), _day(day) {
