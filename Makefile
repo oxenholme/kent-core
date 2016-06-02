@@ -17,7 +17,7 @@
 # <http://www.gnu.org/licenses/>.
 
 OBJS		=	core/tz_info.o core/wall_time.o
-TEST_OBJS	=	core/date.o core/greg_date.o core/tz_info.o core/wall_time.o core/calculator.o
+TEST_OBJS	=	core/date.o core/greg_date.o core/y10kx.o core/tz_info.o core/wall_time.o core/calculator.o
 
 LIBS		=	libcore.a
 TESTS		=	testCore
